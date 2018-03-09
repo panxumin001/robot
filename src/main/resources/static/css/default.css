@@ -1,0 +1,86 @@
+body {
+    color: black;
+    font-family:"Open Sans", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    overflow-x: hidden!important;
+    min-height: 100%;
+    z-index: -2;
+    margin: 0px;
+    background: url('../img/bg1.jpg') no-repeat top center fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.container{
+    line-height: 25px;
+    width:500px;
+    height:580px;
+    float:left;
+    border:2px solid #a1b0ba;
+    margin: 1.5% 0px 0px 35%;
+    background-color: cadetblue;
+}
+.input_text{
+    width :60px;
+}
+.div-left{
+    float:left;
+    border:2px solid #a1b0ba;;
+    width:225px;
+    height: 545px;
+    margin: 15px 0px 0px 0px;
+    background-color: azure;
+}
+.div-right{
+    float:right;
+    border:2px solid #a1b0ba;;
+    width:225px;
+    height: 545px;
+    margin: 15px 0px 0px 0px;
+    background-color: azure;
+}
+.div-bar{
+    border: 1px solid #a1b0ba;
+    border-radius: 5px;
+    margin: 2px 2px 2px 2px;
+}
+div span{
+    font-weight: 600;
+}
+div label{
+    margin: 5px 0px 0px 0px;
+    line-height: 5px;
+    display: inline-block;
+}
+.div_span{
+    font-size: 1.5em;
+    /*-webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;*/
+    font-weight: bold;
+    margin-left: 30%;
+}
+.div_button{
+    font-size:13px;
+    background-color:#ece9d8;
+    padding: 5px 10px 5px 10px;
+    height: 30px;
+    border-width: 2px;
+    font-weight: bold;
+    display: inline;
+    margin: 10px 10px 10px 10px;
+    width: 85px;
+}
+.confirm_button{
+    font-size:13px;
+    background-color:#ece9d8;
+    padding: 5px 20px 5px 20px;
+    height: 30px;
+    border-width: 2px;
+    margin: 4% 0% 4% 30%;
+    font-weight: bold;
+    letter-spacing: 0.5em;
+}

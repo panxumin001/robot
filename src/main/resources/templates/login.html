@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.css"></link>
+    <link rel="stylesheet" href="../css/signin.css"></link>
+    <!-- Le styles -->
+    <!--<script type="text/javascript" src="../js/angularJs/angular.min.js"></script>-->
+    <script type="text/javascript" src="../js/angularJs/angular.js"></script>
+    <script type="text/javascript" src="../js/angularJs/angular-route.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/mainController.js"></script>
+</head>
+<body>
+<div class="container">
+    <div  id="login-wrapper">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div id="logo-login">
+                    <h1>医疗康复终端管理系统
+                        <span>v1.0</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-app="app" ng-controller="UserController">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="account-box">
+                    <form role="form" action="index">
+                        <div class="form-group">
+                            <label for="inputUsername">用户名(IP)</label>
+                            <input type="text" id="inputUsername" ng-model="userName" class="form-control"/>
+                        </div>
+                        <!--ng-model="userName"  ng-model="passWord"-->
+                        <div class="form-group">
+                            <label for="inputPassword">密码(暂无)</label>
+                            <input type="password" id="inputPassword" ng-model="passWord" class="form-control"/>
+                        </div>
+                        <div class="checkbox pull-left">
+                            <label><input type="checkbox"/>记住用户名</label>
+                        </div>
+                        <button class="btn btn btn-primary pull-right" type="submit">
+                            登 录
+                        </button>
+                    </form>
+                    <div class="row-block">
+                        <div class="row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+    <div style="text-align:center;margin:0 auto;">
+        <h6 style="color:#fff;">Copyright(C)2018 germaine.com All Rights Reserved<br />
+            宁波杰曼智能科技有限公司 版权所有</h6>
+    </div>
+</div>
+</body>
+</html>

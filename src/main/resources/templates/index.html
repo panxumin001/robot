@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>robot ui</title>
+    <link rel="stylesheet" href="../css/bootstrap.css"></link>
+    <link rel="stylesheet" href="../css/default.css"></link>
+    <script type="text/javascript" src="../js/angularJs/angular.js"></script>
+    <script type="text/javascript" src="../js/angularJs/angular-route.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/mainController.js"></script>
+</head>
+<body ng-app="app" ng-controller="MainController">
+    <div class="container" >
+        <div class="div-left">
+            <div class="div-bar">
+                <span>您好，admin用户</span>
+            </div>
+            <div class="div-bar">
+                <span class="div_span">动作模式</span><br/>
+                <input class="div_button" type="button" id="stepAction" value="踏步" ng-click="stepAction()"/>
+                <input class="div_button" type="button" id="walkAction" value="步行" ng-click="walkAction()"/>
+                <input class="div_button" type="button" id="setDownAction" value="坐下" ng-click="setDownAction()"/>
+                <input class="div_button" type="button" id="climbStairs" value="爬楼梯" ng-click="climbStairs()"/>
+            </div>
+            <div class="div-bar">
+                <span class="div_span">步态设置</span><br/>
+                <span>步幅：</span><input class="input_text" type="text" id="stepAmplitude" ng-model="data.stepAmplitude"/>
+                <span>步宽：</span><input class="input_text" type="text" id="stepWidth" ng-model="data.stepWidth"/>
+                <span>步频：</span><input class="input_text" type="text" id="stepFrequency" ng-model="data.stepFrequency"/>
+                <span>步长：</span><input class="input_text" type="text" id="stepLength" ng-model="data.stepLength"/>
+                <input class="confirm_button" type="button" id="confirm" value="确认"/>
+            </div>
+            <div class="div-bar">
+                <span class="div_span">连接控制</span><br/>
+                <input class="div_button" type="button" id="start" value="开始" ng-click="start()"/>
+                <input class="div_button" type="button" id="stop" value="停止" ng-click="stop()"/>
+                <input class="div_button" type="button" id="reset" value="急停/复位" ng-click="reset()"/>
+                <input class="div_button" type="button" id="connect" value="连接机器人" ng-click="connect()"/>
+            </div>
+            <div class="div-bar">
+                <span>系统信息提示：</span><br/>
+                <span>电池电量：</span><br/>
+                <span>提示警告：</span>
+            </div>
+        </div>
+
+        <!--<div class="div-right">-->
+            <!--<div class="div-bar"><img src="../img/robot.jpg" width="210px" height="280px"></img></div>-->
+            <!--<div class="div-bar">-->
+                <!--<label>左髋关节：</label><span ng-model="robotData.leftHipAngle">{{robotData.leftHipAngle}}</span><br/>-->
+                <!--<label>右髋关节：</label><span ng-model="robotData.rightHipAngle">{{robotData.rightHipAngle}}</span><br/>-->
+                <!--<label>左膝关节：</label><span ng-model="robotData.leftKneeAngle">{{robotData.leftKneeAngle}}</span><br/>-->
+                <!--<label>右膝关节：</label><span ng-model="robotData.rightKneeAngle">{{robotData.rightKneeAngle}}</span><br/>-->
+                <!--<label>左脚尖压力：</label><span ng-model="robotData.leftToePressure">{{robotData.leftToePressure}}</span><br/>-->
+                <!--<label>右脚尖压力：</label><span ng-model="robotData.rightToePressure">{{robotData.rightToePressure}}</span><br/>-->
+                <!--<label>左脚跟压力：</label><span ng-model="robotData.leftHeelPressure">{{robotData.leftHeelPressure}}</span><br/>-->
+                <!--<label>右脚跟压力：</label><span ng-model="robotData.rightHeelPressure">{{robotData.rightHeelPressure}}</span><br/>-->
+                <!--<label>训练时间：</label><span>0000:00:00</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="div-right table-responsive">
+            <div class="div-bar"><img src="../img/robot.jpg" width="200px" height="240px"></img></div>
+            <table class="table table-condensed">
+                <tbody>
+                <tr>
+                    <td>左髋关节：</td>
+                    <td ng-model="robotData.leftHipAngle">{{robotData.leftHipAngle}}</td></tr>
+                <tr class="success">
+                    <td>右髋关节：</td>
+                    <td ng-model="robotData.rightHipAngle">{{robotData.rightHipAngle}}</td></tr>
+                <tr>
+                    <td>左膝关节：</td>
+                    <td ng-model="robotData.leftKneeAngle">{{robotData.leftKneeAngle}}</td></tr>
+                <tr class="success">
+                    <td>右膝关节：</td>
+                    <td ng-model="robotData.rightKneeAngle">{{robotData.rightKneeAngle}}</td></tr>
+                <tr>
+                    <td>左脚尖压力：</td>
+                    <td ng-model="robotData.leftToePressure">{{robotData.leftToePressure}}</td></tr>
+                <tr class="success">
+                    <td>右脚尖压力：</td>
+                    <td ng-model="robotData.rightToePressure">{{robotData.rightToePressure}}</td></tr>
+                <tr>
+                    <td>左脚跟压力：</td>
+                    <td ng-model="robotData.leftHeelPressure">{{robotData.leftHeelPressure}}</td></tr>
+                <tr class="success">
+                    <td>右脚跟压力：</td>
+                    <td ng-model="robotData.rightHeelPressure">{{robotData.rightHeelPressure}}</td></tr>
+                <tr>
+                    <td>训练时间：</td>
+                    <td >0000</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
