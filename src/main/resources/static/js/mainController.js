@@ -141,4 +141,22 @@ var app = angular.module('app', ['ngRoute']);
             $scope.userName = "admin";
             $scope.passWord = "admin";
 
+            // 登录提交的患者手机号码 --todo
+            $scope.submitForm = function() {
+                $scope.signUpForm={};
+                $http({
+                        method: 'POST',
+                        url: '/api/gateway/api/frontTransReq.do',
+                        data: $.param($scope.signUpForm),
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .success(function(data) {
+                        console.log(data);
+                    });
+            }
+
+
+
     });
