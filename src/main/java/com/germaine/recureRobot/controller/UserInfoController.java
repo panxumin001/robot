@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/gateway/user")
 public class UserInfoController {
 
     @Autowired
     private UserService userService;
 
     /**
-     * 根据ID查询用户
-     * @param id
+     * 根据mobile ID查询用户
+     * @param
      * @return
      */
-    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
-    public ResponseEntity<JsonResult> getUserById (@PathVariable(value = "id") Integer id){
+    @RequestMapping(value = "userLogin", method = RequestMethod.GET)
+    public ResponseEntity<JsonResult> getUserByMobile (@RequestParam("mobile") String mobile){
         JsonResult r = new JsonResult();
         try {
-            User user = userService.getUserById(id);
+            User user = userService.getUserByMobile(Integer.getInteger(mobile));
             r.setResult(user);
             r.setStatus("ok");
         } catch (Exception e) {
@@ -83,14 +83,14 @@ public class UserInfoController {
 
     /**
      * 根据id删除用户
-     * @param id
+     * @param mobile
      * @return
      */
-    @RequestMapping(value = "user/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<JsonResult> delete (@PathVariable(value = "id") Integer id){
+    @RequestMapping(value = "user/{mobile}", method = RequestMethod.DELETE)
+    public ResponseEntity<JsonResult> delete (@PathVariable(value = "mobile") Integer mobile){
         JsonResult r = new JsonResult();
         try {
-            int ret = userService.delete(id);
+            int ret = userService.delete(mobile);
             if (ret < 0) {
                 r.setResult(ret);
                 r.setStatus("fail");
@@ -112,11 +112,11 @@ public class UserInfoController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "user/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<JsonResult> update (@PathVariable("id") Integer id, @RequestBody User user){
+    @RequestMapping(value = "user/{mobile}", method = RequestMethod.PUT)
+    public ResponseEntity<JsonResult> update (@PathVariable("mobile") Integer mobile, @RequestBody User user){
         JsonResult r = new JsonResult();
         try {
-            int ret = userService.update(id, user);
+            int ret = userService.update(mobile, user);
             if (ret < 0) {
                 r.setResult(ret);
                 r.setStatus("fail");

@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User getUserById(Integer id) {
-        return userMapper.getUserById(id);
+    public User getUserByMobile(Integer mobile) {
+        return userMapper.getUserByMobile(mobile);
     }
 
     @Override
@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int update(Integer id, User user) {
-        return userMapper.update(id, user);
+    public int update(Integer mobile, User user) {
+        return userMapper.update(mobile, user);
     }
 
     @Override
-    public int delete(Integer id) {
-        return userMapper.delete(id);
+    public int delete(Integer mobile) {
+        return userMapper.delete(mobile);
     }
 }

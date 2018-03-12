@@ -16,7 +16,7 @@
     <div class="container" >
         <div class="div-left">
             <div class="div-bar">
-                <span>您好，admin用户</span>
+                <span>您好，{{userName}}用户</span>
             </div>
             <div class="div-bar">
                 <span class="div_span">动作模式</span><br/>
@@ -43,7 +43,8 @@
             <div class="div-bar">
                 <span>系统信息提示：</span><br/>
                 <span>电池电量：</span><br/>
-                <span>提示警告：</span>
+                <span>提示警告：</span><br/>
+                <span>当前时间为: {{now|date:'yyyy-MM-dd hh:mm:ss'}}</span>
             </div>
         </div>
 

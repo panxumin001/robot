@@ -5,13 +5,13 @@ import com.germaine.recureRobot.entity.User;
 import java.util.List;
 
 public interface UserService {
-    User getUserById(Integer id);
+    User getUserByMobile(Integer mobile);
 
     public List<User> getUserList();
 
     public int add(User user);
 
-    public int update(Integer id, User user);
+    public int update(Integer mobile, User user);
 
-    public int delete(Integer id);
+    public int delete(Integer mobile);
 }

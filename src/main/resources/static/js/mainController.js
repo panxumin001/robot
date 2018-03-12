@@ -1,17 +1,45 @@
 var app = angular.module('app', ['ngRoute']);
     app.config( [ '$routeProvider', function( $routeProvider ) {
        $routeProvider
+       .when('/login', {
+          templateUrl:'login',
+          controller:'UserController'
+          })
        .when('/index', {
-       url: '/index',
-       templateUrl: 'index.html' ,
-       controller: 'MainController'
-       })
+           templateUrl: 'index' ,
+           controller: 'MainController'
+           })
        .otherwise({redirectTo:'/'});
     }]);
 
-    app.controller('MainController', function($rootScope, $scope, $http) {
-        $scope.robotData = {};
+    app.factory('paramService',function(){
+         return {
+             result:{},
+             getResult:function(){
+             return this.result;
+             },
+             setResult:function(res){
+             this.result = res;
+             }
+         };
+        })
 
+
+    app.controller('MainController', function($rootScope, $scope, $http, $timeout, $interval, paramService) {
+        // 初始化时间
+        $scope.now = new Date();
+        var timer = $interval(function () {
+            $scope.now = new Date();
+        }, 1000);
+
+        // 初始化用户信息
+        $scope.initUserInfo = function() {
+            $scope.userName = paramService.getResult();
+            $scope.userName = paramService.result;
+        }
+        $scope.initUserInfo();
+
+        $scope.robotData = {};
         /**    控制命令发送   **/
         // 开始
         $scope.start = function() {
@@ -122,7 +150,8 @@ var app = angular.module('app', ['ngRoute']);
         // 显示数据
         $scope.getDataById = function(id) {
             $http({
-                url : '/api/gateway/robot/' + id,
+                url : '/api/gateway/api/robotData',
+                data: id,
                 method : 'POST',
             }).then(function(data) {
                 robotData.leftHipAngle = data.leftHipAngle ? data.leftHipAngle : 0;
@@ -137,26 +166,40 @@ var app = angular.module('app', ['ngRoute']);
         }
     });
 
-    app.controller('UserController', function($rootScope, $scope, $http) {
-            $scope.userName = "admin";
-            $scope.passWord = "admin";
+    app.controller('UserController', ["$rootScope", "$scope", "$location", "$http", "paramService", function ($rootScope, $scope, $location, $http, paramService) {
 
-            // 登录提交的患者手机号码 --todo
-            $scope.submitForm = function() {
-                $scope.signUpForm={};
-                $http({
-                        method: 'POST',
-                        url: '/api/gateway/api/frontTransReq.do',
-                        data: $.param($scope.signUpForm),
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    })
-                    .success(function(data) {
-                        console.log(data);
-                    });
+        // 登录提交的患者手机号码
+        $scope.submitForm = function() {
+            var mobile = $scope.tel;
+            if(!mobile) {
+               alert('请输入手机号码！');
+               return ;
             }
+            if(mobile.length!=11) {
+                 alert('请输入有效的手机号码！');
+                 return ;
+             }
+             var myreg = /^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/;
+             if(!myreg.test(mobile)){
+                 alert('请输入有效的手机号码！');
+                 return ;
+             }
 
-
-
-    });
+            $http({
+                    method: 'GET',
+                    url: '/api/gateway/user/userLogin?mobile=' + $scope.tel ,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function(data) {
+                    if(data.data.status == "error") {
+                        paramService.setResult($scope.tel);
+                        paramService.result = $scope.tel;
+                        window.location.href='/index.html';
+                    } else {
+                        console.log(data);
+                    }
+                });
+        }
+     }]);
