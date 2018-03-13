@@ -25,7 +25,7 @@ public class UserInfoController {
     public ResponseEntity<JsonResult> getUserByMobile (@RequestParam("mobile") String mobile){
         JsonResult r = new JsonResult();
         try {
-            User user = userService.getUserByMobile(Integer.getInteger(mobile));
+            User user = userService.getUserByMobile(mobile);
             r.setResult(user);
             r.setStatus("ok");
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class UserInfoController {
      * @return
      */
     @RequestMapping(value = "user/{mobile}", method = RequestMethod.DELETE)
-    public ResponseEntity<JsonResult> delete (@PathVariable(value = "mobile") Integer mobile){
+    public ResponseEntity<JsonResult> delete (@PathVariable(value = "mobile") String mobile){
         JsonResult r = new JsonResult();
         try {
             int ret = userService.delete(mobile);
@@ -113,7 +113,7 @@ public class UserInfoController {
      * @return
      */
     @RequestMapping(value = "user/{mobile}", method = RequestMethod.PUT)
-    public ResponseEntity<JsonResult> update (@PathVariable("mobile") Integer mobile, @RequestBody User user){
+    public ResponseEntity<JsonResult> update (@PathVariable("mobile") String mobile, @RequestBody User user){
         JsonResult r = new JsonResult();
         try {
             int ret = userService.update(mobile, user);

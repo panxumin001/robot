@@ -6,7 +6,7 @@ import java.io.Serializable;
 @EntityScan
 public class User implements Serializable {
 
-	private Integer mobile;
+	private String mobile;
 	private String socialSecurityNo; //用户社保号
 	private String userName; //用户名
 	private String nickName; //昵称
@@ -15,7 +15,7 @@ public class User implements Serializable {
 	private String age; //年龄
 	private String totalTrainingTime; //训练总时长
 
-	public User(Integer mobile, String socialSecurityNo, String userName, String nickName, String passWord, String gender, String age, String totalTrainingTime) {
+	public User(String mobile, String socialSecurityNo, String userName, String nickName, String passWord, String gender, String age, String totalTrainingTime) {
 		this.mobile = mobile;
 		this.socialSecurityNo = socialSecurityNo;
 		this.userName = userName;
@@ -29,9 +29,9 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public Integer getMobile() { return mobile != null ? mobile : 0 ; }
+	public String getMobile() { return mobile; }
 
-	public void setMobile(Integer mobile) { this.mobile = mobile; }
+	public void setMobile(String mobile) { this.mobile = mobile; }
 
 	public String getSocialSecurityNo() {
 		return socialSecurityNo;

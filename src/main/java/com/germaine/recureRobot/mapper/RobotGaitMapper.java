@@ -1,7 +1,6 @@
 package com.germaine.recureRobot.mapper;
 
 import com.germaine.recureRobot.entity.RobotGaitEntity;
-import com.germaine.recureRobot.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 

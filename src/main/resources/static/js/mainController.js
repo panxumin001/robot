@@ -12,20 +12,21 @@ var app = angular.module('app', ['ngRoute']);
        .otherwise({redirectTo:'/'});
     }]);
 
-    app.factory('paramService',function(){
+    app.factory('paramService', function(){
+         var result = {};
+         function getResult() {
+            return this.result;
+         }
+         function setResult(res) {
+            this.result = res;
+         }
          return {
-             result:{},
-             getResult:function(){
-             return this.result;
-             },
-             setResult:function(res){
-             this.result = res;
-             }
+             getter: getResult,
+             setter: setResult
          };
         })
 
-
-    app.controller('MainController', function($rootScope, $scope, $http, $timeout, $interval, paramService) {
+    app.controller('MainController', ["$rootScope", "$scope", "$http", "$interval","paramService", function($rootScope, $scope, $http, $interval, paramService) {
         // 初始化时间
         $scope.now = new Date();
         var timer = $interval(function () {
@@ -34,8 +35,7 @@ var app = angular.module('app', ['ngRoute']);
 
         // 初始化用户信息
         $scope.initUserInfo = function() {
-            $scope.userName = paramService.getResult();
-            $scope.userName = paramService.result;
+            $scope.userName = paramService.getter();
         }
         $scope.initUserInfo();
 
@@ -164,9 +164,9 @@ var app = angular.module('app', ['ngRoute']);
                 robotData.rightHeelPressure = data.rightHeelPressure ? data.rightHeelPressure : 0;
             });
         }
-    });
+    }]);
 
-    app.controller('UserController', ["$rootScope", "$scope", "$location", "$http", "paramService", function ($rootScope, $scope, $location, $http, paramService) {
+    app.controller('UserController', ["$rootScope", "$scope", "$http", "$location", "paramService", function ($rootScope, $scope, $http, $location, paramService) {
 
         // 登录提交的患者手机号码
         $scope.submitForm = function() {
@@ -193,9 +193,8 @@ var app = angular.module('app', ['ngRoute']);
                     }
                 })
                 .then(function(data) {
-                    if(data.data.status == "error") {
-                        paramService.setResult($scope.tel);
-                        paramService.result = $scope.tel;
+                    if(data.data.status == "ok") {
+                        paramService.setter($scope.tel);
                         window.location.href='/index.html';
                     } else {
                         console.log(data);

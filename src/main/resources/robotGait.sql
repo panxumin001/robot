@@ -3,6 +3,7 @@ use robotdb;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`(
   `user_id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `mobile` varchar(32) NOT NULL unique COMMENT '患者手机号',
   `social_security_no` varchar(32)  unique COMMENT '用户社保号',
   `user_name` varchar(32)  COMMENT '用户名',
   `nick_name` varchar(32)  COMMENT '昵称',
