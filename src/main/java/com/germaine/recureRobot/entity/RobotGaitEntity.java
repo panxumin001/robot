@@ -1,10 +1,14 @@
 package com.germaine.recureRobot.entity;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.io.Serializable;
 
+@EntityScan
 public class RobotGaitEntity implements Serializable{
 
-    private String userSocialSecurityNo; // 用户社保id
+    private String mobile; // 用户手机号码
+    private String socialSecurityNo; // 用户社保id
     private String stepAmplitude; // 步幅
     private String stepWidth; // 步宽
     private String stepFrequency; // 步频
@@ -18,8 +22,9 @@ public class RobotGaitEntity implements Serializable{
     private String rightToePressure; //右脚尖压力
     private String rightHeelPressure; //右脚跟压力
 
-    public RobotGaitEntity(String userSocialSecurityNo, String stepAmplitude, String stepWidth, String stepFrequency, String stepLength, String leftHipAngle, String leftKneeAngle, String leftToePressure, String leftHeelPressure, String rightHipAngle, String rightKneeAngle, String rightToePressure, String rightHeelPressure) {
-        this.userSocialSecurityNo = userSocialSecurityNo;
+    public RobotGaitEntity(String mobile, String socialSecurityNo, String stepAmplitude, String stepWidth, String stepFrequency, String stepLength, String leftHipAngle, String leftKneeAngle, String leftToePressure, String leftHeelPressure, String rightHipAngle, String rightKneeAngle, String rightToePressure, String rightHeelPressure) {
+        this.mobile = mobile;
+        this.socialSecurityNo = socialSecurityNo;
         this.stepAmplitude = stepAmplitude;
         this.stepWidth = stepWidth;
         this.stepFrequency = stepFrequency;
@@ -34,15 +39,22 @@ public class RobotGaitEntity implements Serializable{
         this.rightHeelPressure = rightHeelPressure;
     }
 
-    public RobotGaitEntity() {
+    public RobotGaitEntity() {}
+
+    public String getMobile() {
+        return mobile;
     }
 
-    public String getUserSocialSecurityNo() {
-        return userSocialSecurityNo;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public void setUserSocialSecurityNo(String userSocialSecurityNo) {
-        this.userSocialSecurityNo = userSocialSecurityNo;
+    public String getSocialSecurityNo() {
+        return socialSecurityNo;
+    }
+
+    public void setSocialSecurityNo(String socialSecurityNo) {
+        this.socialSecurityNo = socialSecurityNo;
     }
 
     public String getStepAmplitude() {
@@ -144,7 +156,9 @@ public class RobotGaitEntity implements Serializable{
     @Override
     public String toString() {
         return "RobotGaitEntity{" +
-                "stepAmplitude='" + stepAmplitude + '\'' +
+                "mobile='" + mobile + '\'' +
+                ", socialSecurityNo='" + socialSecurityNo + '\'' +
+                ", stepAmplitude='" + stepAmplitude + '\'' +
                 ", stepWidth='" + stepWidth + '\'' +
                 ", stepFrequency='" + stepFrequency + '\'' +
                 ", stepLength='" + stepLength + '\'' +

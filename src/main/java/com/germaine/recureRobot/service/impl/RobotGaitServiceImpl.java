@@ -13,12 +13,16 @@ public class RobotGaitServiceImpl implements RobotGaitService {
     private RobotGaitMapper robotGaitMapper;
 
     @Override
-    public RobotGaitEntity getRobotGaitEntityById(Integer id) {
-        return robotGaitMapper.getRobotGaitEntityById(id);
+    public RobotGaitEntity getRobotGaitEntityByMobile(String mobile) {
+        return robotGaitMapper.getRobotGaitEntityByMobile(mobile);
     }
 
     @Override
     public int add(RobotGaitEntity entity) {
         return robotGaitMapper.add(entity);
+    }
+
+    @Override
+    public int update(RobotGaitEntity entity) {return robotGaitMapper.update(entity);
     }
 }

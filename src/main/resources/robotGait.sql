@@ -11,13 +11,14 @@ CREATE TABLE `users`(
   `gender` varchar(32) COMMENT '性别',
   `age` int COMMENT '年龄',
   `total_training_time` int COMMENT '训练总时长',
-  `update_time` timestamp not null default current_timestamp,
+  `update_time` timestamp(14) not null default current_timestamp on update CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `robot_gait_attribute`;
 CREATE TABLE `robot_gait_attribute`(
      `attribute_id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
-     `user_social_security_no` varchar(32) COMMENT '用户信息关联id',
+     `mobile` varchar(32) unique COMMENT '患者手机号'，
+     `social_security_no` varchar(32) COMMENT '用户社保号',
      `step_amplitude` varchar(32) DEFAULT "" COMMENT '步幅',
      `step_width` varchar(32) DEFAULT "" COMMENT '步宽',
      `step_frequency` varchar(32) DEFAULT "" COMMENT '步频',
@@ -30,7 +31,7 @@ CREATE TABLE `robot_gait_attribute`(
      `right_knee_angle` varchar(32) DEFAULT "" COMMENT '右膝关节角度',
      `right_toe_pressure` varchar(32) DEFAULT "" COMMENT '右脚尖压力',
      `right_heel_pressure` varchar(32) DEFAULT "" COMMENT '右脚跟压力',
-     `update_time` timestamp not null default current_timestamp,
+     `update_time` timestamp(14) not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
      PRIMARY KEY (`attribute_id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -33,11 +33,29 @@ var app = angular.module('app', ['ngRoute']);
             $scope.now = new Date();
         }, 1000);
 
-        // 初始化用户信息
-        $scope.initUserInfo = function() {
-            $scope.userName = paramService.getter();
+        $scope.showInfo = function() {
+            $.ajax({
+                    type: "get",
+                    url: "/api/gateway/robot/" + "13733063223", // 向后端请求数据的url
+                    timeout: '2000', // 2秒超时
+                    success: function (data) {
+                        console.log(data);
+                        if(data.status == "ok") {
+                            $scope.robotData = data.result ? data.result : {};
+                        } else {
+                            console.log(data);
+                        }
+                    }
+                });
         }
-        $scope.initUserInfo();
+
+        // 初始化用户信息
+//        $scope.initUserInfo = function() {
+//            $scope.userName = paramService.getter();
+//            $scope.showInfo();
+//        }
+//        $scope.initUserInfo();
+        window.setInterval(function(){$scope.showInfo()},1000);
 
         $scope.robotData = {};
         /**    控制命令发送   **/

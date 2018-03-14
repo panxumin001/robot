@@ -13,7 +13,6 @@ public interface UserMapper {
             @Result(property = "nickName", column = "nick_name"),
             @Result(property = "totalTrainingTime", column = "total_training_time")
     })
-
     User getUserByMobile(String mobile);
 
     @Select("SELECT * FROM users")
