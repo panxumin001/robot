@@ -39,7 +39,7 @@ var app = angular.module('app', ['ngRoute']);
                     url: "/api/gateway/robot/" + "13733063223", // 向后端请求数据的url
                     timeout: '2000', // 2秒超时
                     success: function (data) {
-                        console.log(data);
+//                        console.log(data);
                         if(data.status == "ok") {
                             $scope.robotData = data.result ? data.result : {};
                         } else {
@@ -101,14 +101,18 @@ var app = angular.module('app', ['ngRoute']);
         // 连接机器人
         $scope.connect = function() {
             $http({
-                    url : '/api/s?state=connect&ip='+'192.168.4.1',
-                    method : 'GET',
-                }).then(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
-               }).catch(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
+                   method: 'GET',
+                   url: '/api/control/connect&ip='+'192.168.4.1',
+                   headers: {
+                       'Content-Type': 'application/json'
+                   }
+               })
+               .then(function(data) {
+                   if(data.data.status == "ok") {
+                       alert(JSON.stringify(data.data));
+                   } else {
+                       console.log(data);
+                   }
                });
         }
 

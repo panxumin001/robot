@@ -50,12 +50,12 @@ public class RobotGaitController {
         JsonResult r = new JsonResult();
         try {
             int updateId = robotGaitService.update(entity);
-            if (updateId < 0) {
+            if (updateId <= 0) {
                 r.setStatus("fail");
                 r.setResult(updateId);
             } else {
                 r.setResult(updateId);
-                r.setStatus("error");
+                r.setStatus("ok");
             }
         } catch (Exception e) {
             r.setResult(e.getClass().getName() + ":" + e.getMessage());

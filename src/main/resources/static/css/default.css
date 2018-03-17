@@ -24,6 +24,7 @@ body {
 }
 .input_text{
     width :60px;
+    height: 25px;
 }
 .div-left{
     float:left;
