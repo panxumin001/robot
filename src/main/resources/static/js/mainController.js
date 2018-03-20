@@ -36,8 +36,8 @@ var app = angular.module('app', ['ngRoute']);
         $scope.showInfo = function() {
             $.ajax({
                     type: "get",
-                    url: "/api/gateway/robot/" + "13733063223", // 向后端请求数据的url
-                    timeout: '2000', // 2秒超时
+                    url: "/api/gateway/robot/" + $scope.tel, // 向后端请求数据的url
+                    timeout: '1800', // 2秒超时
                     success: function (data) {
 //                        console.log(data);
                         if(data.status == "ok") {
@@ -50,12 +50,22 @@ var app = angular.module('app', ['ngRoute']);
         }
 
         // 初始化用户信息
-//        $scope.initUserInfo = function() {
+        $scope.initUserInfo = function() {
 //            $scope.userName = paramService.getter();
 //            $scope.showInfo();
-//        }
-//        $scope.initUserInfo();
-        window.setInterval(function(){$scope.showInfo()},1000);
+            document.getElementById("login_button").disabled=false;
+            document.getElementById("logout_button").disabled=true;
+            document.getElementById("stepAction").disabled=true;
+            document.getElementById("walkAction").disabled=true;
+            document.getElementById("setDownAction").disabled=true;
+            document.getElementById("climbStairs").disabled=true;
+            document.getElementById("confirm").disabled=true;
+            document.getElementById("start").disabled=true;
+            document.getElementById("stop").disabled=true;
+            document.getElementById("reset").disabled=true;
+            document.getElementById("connect").disabled=true;
+        }
+        $scope.initUserInfo();
 
         $scope.robotData = {};
         /**    控制命令发送   **/
@@ -68,6 +78,7 @@ var app = angular.module('app', ['ngRoute']);
                   alert(JSON.stringify(result.data));
                   if(result.data && result.data.status == "ok") {
                     // 开始按钮置灰
+                    window.setInterval(function(){$scope.showInfo()},1000);
 
                   }
               }).catch(function(result) {
@@ -192,8 +203,8 @@ var app = angular.module('app', ['ngRoute']);
             });
         }
 
-        // 登录提交的患者手机号码
-        $scope.submitForm = function() {
+        // 登录
+        $scope.login = function() {
             var mobile = $scope.tel;
             if(!mobile) {
                alert('请输入手机号码！');
@@ -218,10 +229,79 @@ var app = angular.module('app', ['ngRoute']);
                 })
                 .then(function(data) {
                     if(data.data.status == "ok") {
-                        paramService.setter($scope.tel);
-                        window.location.href='/index.html';
+//                        window.location.href='/index.html';
+                        $scope.tips = "登录成功！";
+                        document.getElementById("tel").disabled=true;
+                        document.getElementById("login_button").disabled=true;
+                        document.getElementById("logout_button").disabled=false;
+                        document.getElementById("stepAction").disabled=false;
+                        document.getElementById("walkAction").disabled=false;
+                        document.getElementById("setDownAction").disabled=false;
+                        document.getElementById("climbStairs").disabled=false;
+                        document.getElementById("confirm").disabled=false;
+                        document.getElementById("start").disabled=false;
+                        document.getElementById("stop").disabled=false;
+                        document.getElementById("reset").disabled=false;
+                        document.getElementById("connect").disabled=false;
                     } else {
                         console.log(data);
+                        $scope.tips = "";
+                        document.getElementById("tel").disabled=false;
+                        document.getElementById("login_button").disabled=false;
+                        document.getElementById("logout_button").disabled=true;
+                        document.getElementById("stepAction").disabled=true;
+                        document.getElementById("walkAction").disabled=true;
+                        document.getElementById("setDownAction").disabled=true;
+                        document.getElementById("climbStairs").disabled=true;
+                        document.getElementById("confirm").disabled=true;
+                        document.getElementById("start").disabled=true;
+                        document.getElementById("stop").disabled=true;
+                        document.getElementById("reset").disabled=true;
+                        document.getElementById("connect").disabled=true;
+                    }
+                });
+        }
+
+        // 注销
+        $scope.logout = function() {
+            $http({
+                    method: 'GET',
+                    url: '/api/gateway/user/userLogout?mobile=' + $scope.tel ,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function(data) {
+                    if(data.data.status == "ok") {
+//                        window.location.href='/index.html';
+                        $scope.tel = "";
+                        $scope.tips = "";
+                        document.getElementById("tel").disabled=false;
+                        document.getElementById("login_button").disabled=false;
+                        document.getElementById("logout_button").disabled=true;
+                        document.getElementById("stepAction").disabled=true;
+                        document.getElementById("walkAction").disabled=true;
+                        document.getElementById("setDownAction").disabled=true;
+                        document.getElementById("climbStairs").disabled=true;
+                        document.getElementById("confirm").disabled=true;
+                        document.getElementById("start").disabled=true;
+                        document.getElementById("stop").disabled=true;
+                        document.getElementById("reset").disabled=true;
+                        document.getElementById("connect").disabled=true;
+                    } else {
+                        console.log(data);
+                        document.getElementById("tel").disabled=true;
+                        document.getElementById("login_button").disabled=true;
+                        document.getElementById("logout_button").disabled=false;
+                        document.getElementById("stepAction").disabled=false;
+                        document.getElementById("walkAction").disabled=false;
+                        document.getElementById("setDownAction").disabled=false;
+                        document.getElementById("climbStairs").disabled=false;
+                        document.getElementById("confirm").disabled=false;
+                        document.getElementById("start").disabled=false;
+                        document.getElementById("stop").disabled=false;
+                        document.getElementById("reset").disabled=false;
+                        document.getElementById("connect").disabled=false;
                     }
                 });
         }
@@ -255,7 +335,7 @@ var app = angular.module('app', ['ngRoute']);
                 })
                 .then(function(data) {
                     if(data.data.status == "ok") {
-                        paramService.setter($scope.tel);
+//                        paramService.setter($scope.tel);
                         window.location.href='/index.html';
                     } else {
                         console.log(data);

@@ -18,12 +18,20 @@
             <div class="div-bar-login">
                 <form role="form" name="signUpForm">  <!--action="index"-->
                     <div class="form-group">
-                        <input class="input_class" id="tel" placeholder="请输入手机号" name="tel" ng-trim="true"
-                               ng-model="tel" ng-minlength="11" ng-maxlength="11" ng-pattern="/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/" />
-                        <button class="login_button" ng-click="submitForm()" >
-                            登录
-                        </button>
-                        <span style="color:red" ng-show="signUpForm.tel.$invalid"> 请输入有效的手机号码！</span>
+                        <div class="left-input">
+                            <input class="input_class" id="tel" placeholder="请输入手机号" name="tel" ng-trim="true"
+                                   ng-model="tel" ng-minlength="11" ng-maxlength="11" ng-pattern="/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/" /><br/>
+                            <span class="input_tip_1" ng-show="signUpForm.tel.$invalid"> 请输入有效手机号码！</span>
+                            <span class="input_tip_2" ng-model="tips">{{tips}}</span>
+                        </div>
+                        <div class="right_button">
+                            <button class="login_button" id="login_button" ng-disabled="!tel" ng-click="login()" >
+                                登 录
+                            </button>
+                            <button class="logout_button" id="logout_button" ng-click="logout()" >
+                                注 销
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -52,25 +60,10 @@
             <div class="div-bar">
                 <span>系统信息提示：</span><br/>
                 <span>电池电量：</span><br/>
-                <span>提示警告：</span><br/>
                 <span>当前时间为: {{now|date:'yyyy-MM-dd hh:mm:ss'}}</span>
             </div>
         </div>
 
-        <!--<div class="div-right">-->
-            <!--<div class="div-bar"><img src="../img/robot.jpg" width="210px" height="280px"></img></div>-->
-            <!--<div class="div-bar">-->
-                <!--<label>左髋关节：</label><span ng-model="robotData.leftHipAngle">{{robotData.leftHipAngle}}</span><br/>-->
-                <!--<label>右髋关节：</label><span ng-model="robotData.rightHipAngle">{{robotData.rightHipAngle}}</span><br/>-->
-                <!--<label>左膝关节：</label><span ng-model="robotData.leftKneeAngle">{{robotData.leftKneeAngle}}</span><br/>-->
-                <!--<label>右膝关节：</label><span ng-model="robotData.rightKneeAngle">{{robotData.rightKneeAngle}}</span><br/>-->
-                <!--<label>左脚尖压力：</label><span ng-model="robotData.leftToePressure">{{robotData.leftToePressure}}</span><br/>-->
-                <!--<label>右脚尖压力：</label><span ng-model="robotData.rightToePressure">{{robotData.rightToePressure}}</span><br/>-->
-                <!--<label>左脚跟压力：</label><span ng-model="robotData.leftHeelPressure">{{robotData.leftHeelPressure}}</span><br/>-->
-                <!--<label>右脚跟压力：</label><span ng-model="robotData.rightHeelPressure">{{robotData.rightHeelPressure}}</span><br/>-->
-                <!--<label>训练时间：</label><span>0000:00:00</span>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="div-right table-responsive">
             <div class="div-bar"><img src="../img/robot.jpg" width="200px" height="240px"></img></div>
             <table class="table table-condensed">

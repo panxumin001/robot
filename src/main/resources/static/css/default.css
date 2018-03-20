@@ -1,5 +1,5 @@
 body {
-    color: black;
+    color: #228B22;
     font-family:"Open Sans", Arial, sans-serif;
     font-size: 13px;
     line-height: 20px;
@@ -19,19 +19,46 @@ body {
     height:580px;
     float:left;
     border:2px solid #a1b0ba;
-    margin: 1.5% 0px 0px 35%;
+    margin: 3.5% 35% 3.5% 35%;
     background-color: cadetblue;
 }
 .input_text{
     width :60px;
-    height: 25px;
+    height: 22px;
+    font-size: 14px;
+    line-height: 1.42;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
+
+.input_text:focus{
+    -webkit-box-shadow: 0 0 5px #0F0F0F;
+    -moz-box-shadow:0 0 5px #0F0F0F;
+    box-shadow: 0 0 5px #0F0F0F;
+    border-color:#FF0000;
+    outline:0;
+    background: #EEE8CD;
+}
+
+.input_tip_1{
+    color: red;
+    margin-left: 5px;
+}
+
+.input_tip_2{
+    margin-left: 8px;
+    color: #ACA899;
+}
+
 .input_class{
-    margin: 3px 0px 0px 3px;
+    margin: 6px 0px -30px 5px;
     display: block;
-    width: 142px;
+    width: 135px;
     height: 30px;
-    padding: 6px 12px;
+    padding: 0px 5px;
     font-size: 14px;
     line-height: 1.428571429;
     color: #555;
@@ -39,11 +66,17 @@ body {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.input_class:focus{
+    -webkit-box-shadow: 0 0 5px #0F0F0F;
+    -moz-box-shadow:0 0 5px #0F0F0F;
+    box-shadow: 0 0 5px #0F0F0F;
+    border-color:#FF0000;
+    outline:0;
+    background: #EEE8CD;
+}
+
 .div-left{
     float:left;
     border:2px solid #a1b0ba;;
@@ -67,7 +100,7 @@ body {
 }
 
 .div-bar-login{
-    height: 56px;
+    height: 70px;
     border: 1px solid #a1b0ba;
     border-radius: 5px;
     margin: 2px 2px 2px 2px;
@@ -91,40 +124,54 @@ div label{
     margin-left: 30%;
 }
 
+.left-input{
+    width: 145px;
+    height: 30px;
+}
+
+button[disabled], input[disabled]{
+    border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;
+}
+
+.right_button{
+    width: 64px;
+    margin: -32px 0px 0px 144px;
+}
+
 .login_button{
-    margin: -29px 4px;
-    float: right;
+    font-size:13px;
     color: #fff;
-    background-color: #428bca;
-    display: inline-block;
-    padding: 3px 9px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.428571429;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    letter-spacing: 0.5em;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-appearance: button;
-    font-family: inherit;
-    overflow: visible;
+    background-color: #458B74;
+    border-color: #7FFF00;
+    height: 26px;
+    border-width: 2.3px;
+    font-weight: bold;
+    display: inline;
+    width: 60px;
+    border-radius : 4px;
+}
+.logout_button{
+    font-size:13px;
+    color: #fff;
+    background-color: #458B74;
+    border-color: #7FFF00;
+    height: 26px;
+    border-width: 2.3px;
+    font-weight: bold;
+    display: inline;
+    width: 60px;
+    border-radius : 4px;
+    margin-bottom: -11px;
 }
 
 .div_button{
     font-size:13px;
     /*background-color:#ece9d8;*/
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd;
+    background-color: #458B74;
+    border-color: #7FFF00;
     padding: 1px 10px 5px 10px;
     height: 30px;
     border-width: 2.3px;
@@ -137,8 +184,8 @@ div label{
 .confirm_button{
     font-size:13px;
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd;
+    background-color: #458B74;
+    border-color: #7FFF00;
     padding: 2px 15px 5px 20px;
     height: 30px;
     border-width: 2.3px;

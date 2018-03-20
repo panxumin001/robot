@@ -17,16 +17,35 @@ public class UserInfoController {
     private UserService userService;
 
     /**
-     * 根据mobile ID查询用户
+     * 用户登入
      * @param
      * @return
      */
     @RequestMapping(value = "userLogin", method = RequestMethod.GET)
-    public ResponseEntity<JsonResult> getUserByMobile (@RequestParam("mobile") String mobile){
+    public ResponseEntity<JsonResult> userLogin (@RequestParam("mobile") String mobile){
         JsonResult r = new JsonResult();
         try {
             User user = userService.getUserByMobile(mobile);
             r.setResult(user);
+            r.setStatus("ok");
+        } catch (Exception e) {
+            r.setResult(e.getClass().getName() + ":" + e.getMessage());
+            r.setStatus("error");
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(r);
+    }
+
+    /**
+     * 用户登出
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "userLogout", method = RequestMethod.GET)
+    public ResponseEntity<JsonResult> userLogout (@RequestParam("mobile") String mobile){
+        JsonResult r = new JsonResult();
+        try {
+            r.setResult("logout success");
             r.setStatus("ok");
         } catch (Exception e) {
             r.setResult(e.getClass().getName() + ":" + e.getMessage());
