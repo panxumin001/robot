@@ -62,24 +62,29 @@ var app = angular.module('app', ['ngRoute']);
         // 开始
         $scope.start = function() {
             $http({
-                    url : '/api/s?state=start&ip='+'192.168.4.1',
+                    url : '/api/gateway/control?controlOrder=s' ,
                     method : 'GET',
                 }).then(function(result) {
-                  console.info(result);
                   alert(JSON.stringify(result.data));
+                  if(result.data && result.data.status == "ok") {
+                    // 开始按钮置灰
+
+                  }
               }).catch(function(result) {
-                  console.info(result);
                   alert(JSON.stringify(result.data));
               });
         }
         // 停止
         $scope.stop = function() {
             $http({
-                    url :'/api/s?state=stop&ip='+'192.168.4.1',
-                    method : 'GET',
+                     url : '/api/gateway/control?controlOrder=e' ,
+                     method : 'GET',
                 }).then(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
+                  alert(JSON.stringify(result.data));
+                  if(result.data && result.data.status == "ok") {
+                    // 停止按钮置灰
+
+                  }
                }).catch(function(result) {
                    console.info(result);
                    alert(JSON.stringify(result.data));
@@ -185,6 +190,40 @@ var app = angular.module('app', ['ngRoute']);
                 robotData.leftHeelPressure = data.leftHeelPressure ? data.leftHeelPressure : 0;
                 robotData.rightHeelPressure = data.rightHeelPressure ? data.rightHeelPressure : 0;
             });
+        }
+
+        // 登录提交的患者手机号码
+        $scope.submitForm = function() {
+            var mobile = $scope.tel;
+            if(!mobile) {
+               alert('请输入手机号码！');
+               return ;
+            }
+            if(mobile.length!=11) {
+                 alert('请输入有效的手机号码！');
+                 return ;
+             }
+             var myreg = /^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/;
+             if(!myreg.test(mobile)){
+                 alert('请输入有效的手机号码！');
+                 return ;
+             }
+
+            $http({
+                    method: 'GET',
+                    url: '/api/gateway/user/userLogin?mobile=' + $scope.tel ,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function(data) {
+                    if(data.data.status == "ok") {
+                        paramService.setter($scope.tel);
+                        window.location.href='/index.html';
+                    } else {
+                        console.log(data);
+                    }
+                });
         }
     }]);
 

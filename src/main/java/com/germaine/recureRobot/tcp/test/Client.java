@@ -1,4 +1,4 @@
-package com.germaine.recureRobot.tcp;
+package com.germaine.recureRobot.tcp.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class Client {
     public static void main(String[] args) {
         try {
             //创建Socket对象
-            Socket socket=new Socket("192.168.1.109",8000);
+            Socket socket=new Socket("192.168.1.104",10086);
 
             //根据输入输出流和服务端连接
             OutputStream outputStream=socket.getOutputStream();//获取一个输出流，向服务端发送信息

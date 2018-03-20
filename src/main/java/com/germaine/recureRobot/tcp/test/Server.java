@@ -1,4 +1,6 @@
-package com.germaine.recureRobot.tcp;
+package com.germaine.recureRobot.tcp.test;
+
+import com.germaine.recureRobot.tcp.SocketThread;
 
 import java.io.IOException;
 import java.net.InetAddress;

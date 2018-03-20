@@ -3,6 +3,7 @@ package com.germaine.recureRobot.controller;
 import com.germaine.recureRobot.entity.JsonResult;
 import com.germaine.recureRobot.entity.RobotGaitEntity;
 import com.germaine.recureRobot.service.RobotGaitService;
+import com.germaine.recureRobot.tcp.TcpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -83,5 +84,22 @@ public class RobotGaitController {
             e.printStackTrace();
         }
         return ResponseEntity.ok(r);
+    }
+
+    /**
+     * 通过tcp协议发送控制指令
+     * @param controlOrder
+     * @return
+     */
+    @RequestMapping(value = {"/control"}, produces = "application/json;charset=utf-8", method = {RequestMethod.GET, RequestMethod.POST})
+    public ResponseEntity robotControl(@RequestParam String controlOrder) {
+        JsonResult r = new JsonResult();
+        System.out.println("---->controlOrder send begin :" + controlOrder);
+        String messege = TcpUtils.sendMessege("192.168.1.117", 80, controlOrder);
+        System.out.println("---->controlOrder send end :" + controlOrder);
+        r.setStatus("ok");
+        r.setResult(messege);
+        return ResponseEntity.ok(r);
+
     }
 }

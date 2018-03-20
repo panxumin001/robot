@@ -15,15 +15,24 @@
 <body ng-app="app" ng-controller="MainController">
     <div class="container" >
         <div class="div-left">
-            <div class="div-bar">
-                <span>您好，{{userName}}用户</span>
+            <div class="div-bar-login">
+                <form role="form" name="signUpForm">  <!--action="index"-->
+                    <div class="form-group">
+                        <input class="input_class" id="tel" placeholder="请输入手机号" name="tel" ng-trim="true"
+                               ng-model="tel" ng-minlength="11" ng-maxlength="11" ng-pattern="/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/" />
+                        <button class="login_button" ng-click="submitForm()" >
+                            登录
+                        </button>
+                        <span style="color:red" ng-show="signUpForm.tel.$invalid"> 请输入有效的手机号码！</span>
+                    </div>
+                </form>
             </div>
             <div class="div-bar">
                 <span class="div_span">动作模式</span><br/>
-                <input class="div_button" type="button" id="stepAction" value="踏步" ng-click="stepAction()"/>
-                <input class="div_button" type="button" id="walkAction" value="步行" ng-click="walkAction()"/>
-                <input class="div_button" type="button" id="setDownAction" value="坐下" ng-click="setDownAction()"/>
-                <input class="div_button" type="button" id="climbStairs" value="爬楼梯" ng-click="climbStairs()"/>
+                <input class="div_button" type="button" id="stepAction" value="踏 步" ng-click="stepAction()"/>
+                <input class="div_button" type="button" id="walkAction" value="步 行" ng-click="walkAction()"/>
+                <input class="div_button" type="button" id="setDownAction" value="坐 下" ng-click="setDownAction()"/>
+                <input class="div_button" type="button" id="climbStairs" value="爬 楼 梯" ng-click="climbStairs()"/>
             </div>
             <div class="div-bar">
                 <span class="div_span">步态设置</span><br/>
@@ -35,8 +44,8 @@
             </div>
             <div class="div-bar">
                 <span class="div_span">连接控制</span><br/>
-                <input class="div_button" type="button" id="start" value="开始" ng-click="start()"/>
-                <input class="div_button" type="button" id="stop" value="停止" ng-click="stop()"/>
+                <input class="div_button" type="button" id="start" value="开 始" ng-click="start()"/>
+                <input class="div_button" type="button" id="stop" value="停 止" ng-click="stop()"/>
                 <input class="div_button" type="button" id="reset" value="急停/复位" ng-click="reset()"/>
                 <input class="div_button" type="button" id="connect" value="连接机器人" ng-click="connect()"/>
             </div>
