@@ -7,6 +7,7 @@ import com.germaine.recureRobot.tcp.TcpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -50,7 +51,18 @@ public class RobotGaitController {
     public ResponseEntity<JsonResult> updateGaitData(@RequestBody RobotGaitEntity entity) {
         JsonResult r = new JsonResult();
         try {
-            int updateId = robotGaitService.update(entity);
+            RobotGaitEntity gaitEntity = robotGaitService.getRobotGaitEntityByMobile(entity.getMobile().toString());
+            if (StringUtils.isEmpty(gaitEntity)) {
+                robotGaitService.add(entity);
+            }
+            int bak = robotGaitService.saveBak(entity); // 数据备份表备份
+            if (bak <= 0 ) {
+                System.out.println("--->数据接收备份失败！data:" + entity );
+            } else {
+                System.out.println("--->数据接收备份成功！data:" + entity);
+            }
+
+            int updateId = robotGaitService.update(entity); // 数据更新
             if (updateId <= 0) {
                 r.setStatus("fail");
                 r.setResult(updateId);

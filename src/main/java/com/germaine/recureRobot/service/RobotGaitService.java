@@ -8,4 +8,6 @@ public interface RobotGaitService {
     public int add(RobotGaitEntity entity);
 
     public int update(RobotGaitEntity entity);
+
+    public int saveBak(RobotGaitEntity entity);
 }

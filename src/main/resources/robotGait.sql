@@ -34,5 +34,24 @@ CREATE TABLE `robot_gait_attribute`(
      `update_time` timestamp(14) not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
      PRIMARY KEY (`attribute_id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `robot_gait_attribute_bak`;
+CREATE TABLE `robot_gait_attribute_bak`(
+    `attribute_bak_id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
+    `mobile` varchar(32) COMMENT '患者手机号',
+    `social_security_no` varchar(32) COMMENT '用户社保号',
+    `step_amplitude` varchar(32) DEFAULT "" COMMENT '步幅',
+    `step_width` varchar(32) DEFAULT "" COMMENT '步宽',
+    `step_frequency` varchar(32) DEFAULT "" COMMENT '步频',
+    `step_length` varchar(32) DEFAULT "" COMMENT '步长',
+    `left_hip_angle` varchar(32) DEFAULT "" COMMENT '左髋关节角度',
+    `left_knee_angle` varchar(32) DEFAULT "" COMMENT '左膝关节角度',
+    `left_toe_pressure` varchar(32) DEFAULT "" COMMENT '左脚尖压力',
+    `left_heel_pressure` varchar(32) DEFAULT "" COMMENT '左脚跟压力',
+    `right_hip_angle` varchar(32) DEFAULT "" COMMENT '右髋关节角度',
+    `right_knee_angle` varchar(32) DEFAULT "" COMMENT '右膝关节角度',
+    `right_toe_pressure` varchar(32) DEFAULT "" COMMENT '右脚尖压力',
+    `right_heel_pressure` varchar(32) DEFAULT "" COMMENT '右脚跟压力',
+    `update_time` timestamp(14) not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+    PRIMARY KEY (`attribute_bak_id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
