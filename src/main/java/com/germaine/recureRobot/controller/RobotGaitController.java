@@ -54,6 +54,7 @@ public class RobotGaitController {
             RobotGaitEntity gaitEntity = robotGaitService.getRobotGaitEntityByMobile(entity.getMobile().toString());
             if (StringUtils.isEmpty(gaitEntity)) {
                 robotGaitService.add(entity);
+                System.out.println("--->新增初始化数据！data:" + entity );
             }
             int bak = robotGaitService.saveBak(entity); // 数据备份表备份
             if (bak <= 0 ) {
