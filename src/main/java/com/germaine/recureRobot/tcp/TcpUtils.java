@@ -1,19 +1,18 @@
 package com.germaine.recureRobot.tcp;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 
 public class TcpUtils {
      public static String sendMessege (String host, int port, String message) {
-         String infoStr = "";
          try {
              //创建Socket对象
-             Socket socket=new Socket(host, port);
+             Socket socket = new Socket();
+             socket.connect(new InetSocketAddress(host, port), 1800);//设置连接请求超时时间
+             socket.setSoTimeout(30000);// 设置读操作超时时间30s
 
              //根据输入输出流和服务端连接
+             System.out.println("--->>client connected to " + socket.getRemoteSocketAddress());
              OutputStream outputStream=socket.getOutputStream();//获取一个输出流，向服务端发送信息
              PrintWriter printWriter=new PrintWriter(outputStream);//将输出流包装成打印流
              printWriter.print(message); // 发送信息
@@ -27,8 +26,7 @@ public class TcpUtils {
              String temp=null;//临时变量
              while((temp=bufferedReader.readLine())!=null){
                  info+=temp;
-                 infoStr = info;
-                 System.out.println("--->>客户端接收服务端发送信息："+info);
+                 System.out.println("--->>client receive server info："+info);
              }
 
              //关闭相对应的资源
