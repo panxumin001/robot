@@ -55,12 +55,11 @@ body {
 
 .input_class{
     margin: 6px 0px -30px 5px;
-    display: block;
     width: 135px;
     height: 30px;
     padding: 0px 5px;
     font-size: 14px;
-    line-height: 1.428571429;
+    line-height: 1.42;
     color: #555;
     background-color: #fff;
     background-image: none;
@@ -137,7 +136,7 @@ button[disabled], input[disabled]{
 
 .right_button{
     width: 64px;
-    margin: -32px 0px 0px 144px;
+    margin: -23px 0px 0px 144px;
 }
 
 .login_button{
