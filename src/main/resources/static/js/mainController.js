@@ -66,6 +66,14 @@ var app = angular.module('app', ['ngRoute']);
             document.getElementById("stop").disabled=true;
             document.getElementById("reset").disabled=true;
             document.getElementById("connect").disabled=true;
+            $scope.robotData.leftHipAngle = 0;
+            $scope.robotData.rightHipAngle = 0;
+            $scope.robotData.leftKneeAngle = 0;
+            $scope.robotData.rightKneeAngle = 0;
+            $scope.robotData.leftToePressure = 0;
+            $scope.robotData.rightToePressure = 0;
+            $scope.robotData.leftHeelPressure = 0;
+            $scope.robotData.rightHeelPressure = 0;
         }
         $scope.initUserInfo();
 
@@ -76,14 +84,14 @@ var app = angular.module('app', ['ngRoute']);
                 data: id,
                 method : 'POST',
             }).then(function(data) {
-                robotData.leftHipAngle = data.leftHipAngle ? data.leftHipAngle : 0;
-                robotData.rightHipAngle = data.rightHipAngle ? data.rightHipAngle : 0;
-                robotData.leftKneeAngle = data.leftKneeAngle ? data.leftKneeAngle : 0;
-                robotData.rightKneeAngle = data.rightKneeAngle ? data.rightKneeAngle : 0;
-                robotData.leftToePressure = data.leftToePressure ? data.leftToePressure : 0;
-                robotData.rightToePressure = data.rightToePressure ? data.rightToePressure : 0;
-                robotData.leftHeelPressure = data.leftHeelPressure ? data.leftHeelPressure : 0;
-                robotData.rightHeelPressure = data.rightHeelPressure ? data.rightHeelPressure : 0;
+                $scope.robotData.leftHipAngle = data.leftHipAngle ? data.leftHipAngle : 0;
+                $scope.robotData.rightHipAngle = data.rightHipAngle ? data.rightHipAngle : 0;
+                $scope.robotData.leftKneeAngle = data.leftKneeAngle ? data.leftKneeAngle : 0;
+                $scope.robotData.rightKneeAngle = data.rightKneeAngle ? data.rightKneeAngle : 0;
+                $scope.robotData.leftToePressure = data.leftToePressure ? data.leftToePressure : 0;
+                $scope.robotData.rightToePressure = data.rightToePressure ? data.rightToePressure : 0;
+                $scope.robotData.leftHeelPressure = data.leftHeelPressure ? data.leftHeelPressure : 0;
+                $scope.robotData.rightHeelPressure = data.rightHeelPressure ? data.rightHeelPressure : 0;
             });
         }
 
@@ -222,6 +230,14 @@ var app = angular.module('app', ['ngRoute']);
                     window.clearInterval(timerId);
                     document.getElementById("stop").disabled=true;
                     document.getElementById("start").disabled=false;
+                    $scope.robotData.leftHipAngle = 0;
+                    $scope.robotData.rightHipAngle = 0;
+                    $scope.robotData.leftKneeAngle = 0;
+                    $scope.robotData.rightKneeAngle = 0;
+                    $scope.robotData.leftToePressure = 0;
+                    $scope.robotData.rightToePressure = 0;
+                    $scope.robotData.leftHeelPressure = 0;
+                    $scope.robotData.rightHeelPressure = 0;
                   }
                }).catch(function(result) {
                    console.info(result);
