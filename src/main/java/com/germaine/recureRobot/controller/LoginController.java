@@ -11,8 +11,8 @@ public class LoginController {
         return "index";
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/register")
     public String loginToIndex() {
-        return "index";
+        return "register";
     }
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>医疗康复终端管理系统</title>
+    <link rel="stylesheet" href="../css/bootstrap.css"></link>
+    <link rel="stylesheet" href="../css/cover.css"></link>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script>
+        $(document).ready(function(){
+             $("#open").click(function() {
+                   cover.style.display="block";   //显示遮罩层
+                   modal.style.display="block";   //显示弹出层
+             })
+              $("#close").click(function() {
+                  cover.style.display="none";   //隐藏遮罩层
+                  modal.style.display="none";   //隐藏弹出层
+              })
+        })
+</script>
+</head>
+<body>
+    <div id="body"> 显示页面的全部内容
+        <div id="open">打开弹框</div>
+    </div>
+    //页面的遮罩层
+    <div id="cover"></div>
+    //页面的弹出框
+    <div id="modal">
+        <div id="close">关闭弹框</div>
+    </div>
+    </body>
+</html>

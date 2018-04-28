@@ -61,3 +61,5 @@ CREATE TABLE `robot_gait_attribute_bak`(
     `update_time` datetime  not null default CURRENT_TIMESTAMP  comment '修改时间',
     PRIMARY KEY(`attribute_bak_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+DROP TABLE IF EXISTS
+    ``

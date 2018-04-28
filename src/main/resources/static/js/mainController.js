@@ -38,7 +38,8 @@ var app = angular.module('app', ['ngRoute']);
         $scope.showInfo = function() {
             $.ajax({
                     type: "get",
-                    url: "/api/gateway/robot/" + $scope.tel, // 向后端请求数据的url
+//                    url: "/api/gateway/robot/" + $scope.tel, // 向后端请求数据的url
+                    url: "/api/gateway/robot/" + "13733063223", // 向后端请求数据的url
                     timeout: '1800', // 2秒超时
                     success: function (data) {
 //                        console.log(data);
@@ -129,12 +130,12 @@ var app = angular.module('app', ['ngRoute']);
                         document.getElementById("stepAction").disabled=false;
                         document.getElementById("walkAction").disabled=false;
                         document.getElementById("setDownAction").disabled=false;
-                        document.getElementById("climbStairs").disabled=false;
-                        document.getElementById("confirm").disabled=false;
+//                        document.getElementById("climbStairs").disabled=false;
+//                        document.getElementById("confirm").disabled=false;
                         document.getElementById("start").disabled=false;
                         document.getElementById("stop").disabled=true;
-                        document.getElementById("reset").disabled=false;
-                        document.getElementById("connect").disabled=false;
+//                        document.getElementById("reset").disabled=false;
+//                        document.getElementById("connect").disabled=false;
                     } else {
                         console.log(data);
                         $scope.tips = "";
@@ -189,12 +190,12 @@ var app = angular.module('app', ['ngRoute']);
                         document.getElementById("stepAction").disabled=false;
                         document.getElementById("walkAction").disabled=false;
                         document.getElementById("setDownAction").disabled=false;
-                        document.getElementById("climbStairs").disabled=false;
-                        document.getElementById("confirm").disabled=false;
+//                        document.getElementById("climbStairs").disabled=false;
+//                        document.getElementById("confirm").disabled=false;
                         document.getElementById("start").disabled=false;
                         document.getElementById("stop").disabled=false;
-                        document.getElementById("reset").disabled=false;
-                        document.getElementById("connect").disabled=false;
+//                        document.getElementById("reset").disabled=false;
+//                        document.getElementById("connect").disabled=false;
                     }
                 });
         }
@@ -203,7 +204,7 @@ var app = angular.module('app', ['ngRoute']);
         // 开始
         $scope.start = function() {
             $http({
-                    url : '/api/gateway/control?controlOrder=s' ,
+                    url : '/api/gateway/control?controlOrder=start' ,
                     method : 'GET',
                 }).then(function(result) {
                   alert(JSON.stringify(result.data));
@@ -221,7 +222,7 @@ var app = angular.module('app', ['ngRoute']);
         // 停止
         $scope.stop = function() {
             $http({
-                     url : '/api/gateway/control?controlOrder=e' ,
+                     url : '/api/gateway/control?controlOrder=end' ,
                      method : 'GET',
                 }).then(function(result) {
                   alert(JSON.stringify(result.data));
@@ -248,11 +249,10 @@ var app = angular.module('app', ['ngRoute']);
         // 急停/复位
         $scope.reset = function() {
             $http({
-                    url : '/api/s?state=reset&ip='+'192.168.4.1',
+                    url : '/api/gateway/control?controlOrder=reset' ,
                     method : 'GET',
                 }).then(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
+                 alert(JSON.stringify(result.data));
                }).catch(function(result) {
                    console.info(result);
                    alert(JSON.stringify(result.data));
@@ -261,11 +261,8 @@ var app = angular.module('app', ['ngRoute']);
         // 连接机器人
         $scope.connect = function() {
             $http({
-                   method: 'GET',
-                   url: '/api/control/connect&ip='+'192.168.4.1',
-                   headers: {
-                       'Content-Type': 'application/json'
-                   }
+                   url : '/api/gateway/control?controlOrder=connect' ,
+                   method : 'GET',
                })
                .then(function(data) {
                    if(data.data.status == "ok") {
@@ -278,55 +275,59 @@ var app = angular.module('app', ['ngRoute']);
 
         // 踏步
         $scope.stepAction = function() {
-            $http({
-                    url : '/api/s?state=step&ip='+'192.168.4.1',
-                    method : 'GET',
-                }).then(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
-               }).catch(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
-               });
+             $http({
+                       url : '/api/gateway/control?controlOrder=marktime' ,
+                       method : 'GET',
+                   })
+                   .then(function(data) {
+                       if(data.data.status == "ok") {
+                           alert(JSON.stringify(data.data));
+                       } else {
+                           console.log(data);
+                       }
+                   });
         }
         // 步行
         $scope.walkAction = function() {
             $http({
-                    url :'/api/s?state=walk&ip='+'192.168.4.1',
-                    method : 'GET',
-                }).then(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
-               }).catch(function(result) {
-                   console.info(result);
-                  alert(JSON.stringify(result.data));
+                   url : '/api/gateway/control?controlOrder=walk' ,
+                   method : 'GET',
+               })
+               .then(function(data) {
+                   if(data.data.status == "ok") {
+                       alert(JSON.stringify(data.data));
+                   } else {
+                       console.log(data);
+                   }
                });
         }
         // 坐下
         $scope.setDownAction = function() {
-            $http({
-                    url : '/api/s?state=setDown&ip='+'192.168.4.1',
-                    method : 'GET',
-                }).then(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
-               }).catch(function(result) {
-                   console.info(result);
-                   alert(JSON.stringify(result.data));
+             $http({
+                   url : '/api/gateway/control?controlOrder=sit' ,
+                   method : 'GET',
+               })
+               .then(function(data) {
+                   if(data.data.status == "ok") {
+                       alert(JSON.stringify(data.data));
+                   } else {
+                       console.log(data);
+                   }
                });
         }
         // 爬楼梯
         $scope.climbStairs = function() {
             $http({
-                    url : '/api/s?state=climb&ip='+'192.168.4.1',
-                    method : 'GET',
-                }).then(function(result) {
-                    console.info(result);
-                    alert(JSON.stringify(result.data));
-                }).catch(function(result) {
-                    console.info(result);
-                    alert(JSON.stringify(result.data));
-                });
+                   url : '/api/gateway/control?controlOrder=climbStairs' ,
+                   method : 'GET',
+               })
+               .then(function(data) {
+                   if(data.data.status == "ok") {
+                       alert(JSON.stringify(data.data));
+                   } else {
+                       console.log(data);
+                   }
+               });
         }
     }]);
 

@@ -14,7 +14,7 @@ public class Server {
      */
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(8000,10, InetAddress.getByName ("192.168.1.109"));
+            ServerSocket serverSocket = new ServerSocket(8000,10, InetAddress.getByName ("192.168.1.111"));
             System.out.println("服务端已启动，等待客户端连接..");
 
             while (true) {

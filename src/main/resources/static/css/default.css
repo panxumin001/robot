@@ -3,7 +3,7 @@ body {
     font-family:"Open Sans", Arial, sans-serif;
     font-size: 13px;
     line-height: 20px;
-    overflow-x: hidden!important;
+    overflow-x: hidden;
     min-height: 100%;
     z-index: -2;
     margin: 0px;
