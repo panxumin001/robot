@@ -18,8 +18,7 @@ public class Client {
     public static void main(String[] args) {
         try {
             //创建Socket对象
-//            Socket socket=new Socket("192.168.1.104",10086);
-            Socket socket=new Socket("192.168.1.105",7777);
+            Socket socket=new Socket("192.168.1.132",8000);
 
             //根据输入输出流和服务端连接
             OutputStream outputStream=socket.getOutputStream();//获取一个输出流，向服务端发送信息

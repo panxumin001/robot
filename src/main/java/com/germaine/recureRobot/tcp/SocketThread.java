@@ -31,17 +31,13 @@ public class SocketThread extends Thread {
             String info = "";
             while ((temp = bufferedReader.readLine()) != null) {
                 info += temp;
-                System.out.println("已接收到客户端连接");
-                System.out.println("服务端接收到客户端信息：" + info + ",当前客户端ip为："
+                System.out.println("server ：" + info + ",client ip is："
                         + socket.getInetAddress().getHostAddress());
             }
 
             OutputStream outputStream = socket.getOutputStream();// 获取一个输出流，向服务端发送信息
             PrintWriter printWriter = new PrintWriter(outputStream);// 将输出流包装成打印流
-            for (int i = 0; i < 1000; i++) {
-                printWriter.print("I am from pc666666");
-            }
-            printWriter.print("你好，服务端6666已接收到您的信息");
+            printWriter.print("this is test");
             printWriter.flush();
             socket.shutdownOutput();// 关闭输出流
 
@@ -50,6 +46,19 @@ public class SocketThread extends Thread {
             inputStream.close();
             printWriter.close();
             outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void sendData(Socket socket, String data) {
+        try {
+            OutputStream outputStream = socket.getOutputStream();
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.print(data);
+            printWriter.flush();
+            socket.shutdownOutput();// 关闭输出流
         } catch (IOException e) {
             e.printStackTrace();
         }

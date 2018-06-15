@@ -14,8 +14,8 @@ public class Server {
      */
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(8000,10, InetAddress.getByName ("192.168.1.111"));
-            System.out.println("服务端已启动，等待客户端连接..");
+            ServerSocket serverSocket = new ServerSocket(8888,10, InetAddress.getByName ("192.168.1.132"));
+            System.out.println("--------Server Started--------");
 
             while (true) {
                 Socket socket = serverSocket.accept();// 侦听并接受到此套接字的连接,返回一个Socket对象
